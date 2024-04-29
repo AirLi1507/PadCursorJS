@@ -1,0 +1,78 @@
+body {
+    cursor: none;
+}
+
+#Cursor {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+#padCursor:after {
+    animation: cursor-load 0.5s ease forwards;
+  }
+
+@keyframes cursor-load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        width: 40px;
+        height: 40px;
+        background-color: rgb(128, 128, 128, 0.7);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }
+}
+
+#padCursor.text-cursor {
+    animation: hovering-text 0.2s forwards;
+}
+
+@keyframes hovering-text {
+    0% {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(128, 128, 128, 0.7);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }    
+    100% {
+        width: 5px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: rgb(128, 128, 128, 0.7);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }
+}
+
+@keyframes unhover-text {
+    0% {
+        width: 5px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: rgb(128, 128, 128, 0.7);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }    
+    100% {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(128, 128, 128, 0.7);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }
+}
