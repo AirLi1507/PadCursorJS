@@ -1,6 +1,6 @@
 // PadCursorJS
 //
-// iPad Like Cursor for HTML using JavaScript and CSS :D
+// iPad Like Cursor for HTML using JavaScript and CSS
 //
 // Credit: Air Li (https://github.com/goodair220917/ or https://github.com/AirLi1507)
 //
@@ -8,13 +8,94 @@
 //
 // Last updated: 29/04/2024
 
+//CSS
+var cursorCSS = `
+body {
+    cursor: none;
+}
 
-//Inserting CSS
-var stylesheet = document.createElement("link");
+#Cursor {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999; /* Ensure it's on top of other elements */
+}
 
-stylesheet.rel = "stylesheet";
-stylesheet.href - "https://raw.githubusercontent.com/AirLi1507/PadCursorJS/main/cursorCSS.css";
+#padCursor:after {
+    animation: cursor-load 0.5s ease forwards;
+  }
 
+
+
+@keyframes cursor-load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        width: 30px;
+        height: 30px;
+        background-color: rgb(128, 128, 128, 0.7);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999; /* Ensure it's on top of other elements */
+    }
+}
+
+#padCursor.text-cursor {
+    animation: hovering-text 0.2s forwards;
+}
+
+@keyframes hovering-text {
+    0% {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(128, 128, 128, 0.7);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999; /* Ensure it's on top of other elements */
+    }    
+    100% {
+        width: 7px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: rgb(128, 128, 128, 0.7);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999; /* Ensure it's on top of other elements */
+    }
+}
+
+@keyframes unhover-text {
+    0% {
+        width: 7px;
+        height: 50px;
+        border-radius: 20px;
+        background-color: rgb(128, 128, 128, 0.7);
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999; /* Ensure it's on top of other elements */
+    }    
+    100% {
+        width: 40px;
+        height: 40px;
+        background-color: rgb(128, 128, 128, 0.7);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999; /* Ensure it's on top of other elements */
+    }
+}
+`;
+
+//Inserting Cursor CSS
+
+var styleSheet = document.createElement("style");
+styleSheet.innerText = cursorCSS;
 document.head.appendChild(styleSheet);
 
 //Inserting Cursor Div Element
@@ -37,7 +118,7 @@ function isMobileDevice() {
   
     if (!isMobileDevice()) {
       document.addEventListener("mousemove", function(e) {
-        const isHoveringOverText = e.target.nodeName.toLowerCase() === "p" || e.target.nodeName.toLowerCase() === "span" || e.target.nodeName.toLowerCase() === "a" || e.target.nodeName.toLowerCase() === "h1" || e.target.nodeName.toLowerCase() === "h2" || e.target.nodeName.toLowerCase() === "h3" || e.target.nodeName.toLowerCase() === "h4" || e.target.nodeName.toLowerCase() === "h5" || e.target.nodeName.toLowerCase() === "h6"
+        const isHoveringOverText = e.target.nodeName.toLowerCase() === "li" || e.target.nodeName.toLowerCase() === "p" || e.target.nodeName.toLowerCase() === "span" || e.target.nodeName.toLowerCase() === "a" || e.target.nodeName.toLowerCase() === "h1" || e.target.nodeName.toLowerCase() === "h2" || e.target.nodeName.toLowerCase() === "h3" || e.target.nodeName.toLowerCase() === "h4" || e.target.nodeName.toLowerCase() === "h5" || e.target.nodeName.toLowerCase() === "h6"
         CursorDiv.style.top = e.clientY - CursorDiv.offsetHeight / 2 + "px";
 
         if (!isHoveringOverText) {
@@ -63,7 +144,7 @@ function isMobileDevice() {
         element.style.cursor = 'none';
       });
     } else {
-      // Do not display the custom cursor for mobile devices
+      // For mobile devices, do not display the custom cursor
       customCursor.style.display = 'none';
     }
   });
